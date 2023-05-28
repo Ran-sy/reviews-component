@@ -1,0 +1,425 @@
+@import "./media-queries";
+
+$background: white;
+$file-background: #eee;
+$gray: #85878b;
+$gray-secondary: #c8c8c8;
+$green: #25ac0399;
+$secondary-green: #4ab502;
+$secondary-yellow: #c4ac01; //low rating
+$button-bg: #ffdc82;
+$blue: #4086e4;
+$black: #292f37;
+$orange-focus: #f7ce5f;
+$orange-hover: #fff4dd;
+$outline-focus: #ffdc8266;
+
+@mixin sub-text {
+  font-size: 0.7rem;
+  color: $gray;
+}
+
+body {
+  background-color: $file-background;
+}
+
+section.reviews {
+  border-radius: 10px;
+  background-color: $background;
+  margin: 30px 0;
+  @include gt-md {
+    max-width: 78%;
+  }
+  @include md {
+    max-width: 97%;
+  }
+  @include lt-md {
+    margin-left: 0;
+  }
+  margin-left: 1%;
+  max-width: 99%;
+  .reviews-rating {
+    border-bottom: 2px solid $file-background;
+    @include gt-sm {
+      padding: 12px 40px 16px;
+    }
+    @include sm {
+      padding: 12px 0px 16px 20px;
+    }
+    @include lt-sm {
+      display: block;
+      padding: 12px 10px 10px;
+    }
+    .rating-total {
+      align-self: flex-start;
+      margin: 4px 24px 0 76px;
+      @include gt-sm {
+        font-size: 100%;
+      }
+      @include sm {
+        font-size: 95%;
+      }
+      @include lt-sm {
+        font-size: 90%;
+      }
+      min-width: 100px;
+      .rating-total-value {
+        color: $background;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='60' fill='none'%3E %3Cpath fill='%2325ac03' d='M3 0h40v50.79a2 2 0 01-2.2 1.99l-17.6-1.763a1.996 1.996 0 00-.4 0L5.2 52.78A2 2 0 013 50.79V0z'/%3E %3C/svg%3E");
+        background-size: cover;
+        filter: drop-shadow(0 3px 3px $green);
+        padding: 20px 0 0;
+        height: 80px;
+        width: 64px;
+        top: -5px;
+        left: 40px;
+        text-align: center;
+        font-size: 125%;
+        @include sm {
+          left: 20px;
+        }
+        @include lt-sm {
+          left: 20px;
+          height: 65px;
+          width: 52px;
+          font-size: 120%;
+        }
+      }
+      .sub-head {
+        @include sub-text();
+      }
+    }
+    ul {
+      justify-content: flex-start;
+      align-items: end;
+      min-height: 100px;
+      margin: 0 30px;
+      @include sm {
+        margin: 0;
+      }
+      @include lt-sm {
+        margin: 0;
+        padding-top: 10px;
+        height: auto;
+      }
+      li {
+        @include gt-sm {
+          min-width: 27%;
+          font-size: 70%;
+        }
+        @include sm {
+          min-width: 27%;
+          font-size: 60%;
+        }
+        @include lt-sm {
+          margin-top: 18px;
+          min-width: 44%;
+          font-size: 60%;
+        }
+        display: flex;
+        justify-content: space-between;
+        margin: 0 3%;
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 5px;
+          top: -10px;
+          left: 0;
+          background-color: $file-background;
+          border-radius: 5px;
+        }
+        &::after {
+          background-color: $secondary-green;
+          width:0;
+        }
+        &:nth-child(1)::after{
+          width: 80%;
+        }
+        &:nth-child(3)::after{
+          width: 97%;
+        }
+        &:nth-child(5)::after{
+          width: 77%;
+        }
+        &:nth-child(6)::after{
+          width: 60%;
+          background-color: $secondary-yellow;
+        }
+        &:nth-child(7)::after{
+          width: 79%;
+        }
+        &:nth-child(8)::after{
+          width: 100%;
+        }
+      }
+    }
+    .advisor {
+      padding-left: 30px;
+      border-left: 2px solid $file-background;
+      @include lt-md {
+        display: none;
+      }
+      @include lt-sm {
+        display: block;
+        border-left: none;
+        border-top: 2px solid $file-background;
+        border-bottom: 2px solid $file-background;
+        margin: 20px 0;
+        padding: 10px;
+      }
+      a {
+        color: $black;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        .sub-head {
+          @include sub-text();
+          @include lt-sm {
+            margin-left: 20px;
+          }
+        }
+        .advisor-content {
+          @include lt-sm {
+            display: flex;
+            align-items: flex-end;
+          }
+        }
+      }
+    }
+    .read-reviews {
+      display: none;
+      @include lt-sm {
+        display: block;
+      }
+      background-color: $button-bg;
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+  }
+  .reviews-content {
+    padding: 10px 0 0;
+    user-select: none;
+    ul.reviews-form {
+      @include lt-sm {
+        font-size: 80%;
+        padding-left: 15px;
+      }
+      padding-left: 30px;
+      justify-content: flex-start;
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-bottom: 2px solid $gray-secondary;
+      }
+      li {
+        margin-right: 7px;
+        color: $blue;
+        padding: 10px 13px;
+        .sub-head {
+          @include sub-text();
+          font-size: 80%;
+          font-weight: normal;
+          @include lt-sm {
+            display: none;
+          }
+        }
+      }
+      li.active {
+        border-left: 2px solid $gray-secondary;
+        border-right: 2px solid $gray-secondary;
+        border-top: 2px solid $gray-secondary;
+        border-radius: 8px 8px 0 0;
+        position: relative;
+        color: $black;
+        .sub-head {
+          color: $black;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-bottom: 2px solid $background;
+          z-index: 1;
+        }
+      }
+    }
+    div.reviews-filters {
+      user-select: none;
+      justify-content: space-around;
+      @include lt-sm {
+        display: block;
+      }
+      ul.select-div {
+        width: 30%;
+        margin: 10px 4%;
+        padding: 5px 10px;
+        border: 1px solid $gray-secondary;
+        border-radius: 3px;
+        @include lt-sm {
+          width: 90%;
+          margin: 2% 4%;
+        }
+        &:first-child li {
+          color: $black;
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: 30%;
+          right: 10%;
+          width: 6px;
+          height: 6px;
+          border: 2px solid;
+          border-color: transparent transparent #555555 #555555;
+          transform: rotate(-45deg);
+          @include lt-sm {
+            right: 15px;
+          }
+        }
+        .sub-head {
+          @include sub-text();
+          color: $black;
+        }
+        .default-option {
+          font-size: 80%;
+          color: $gray;
+        }
+        .select-group {
+          padding: 5px 0;
+          top: 107%;
+          left: 0;
+          width: 100%;
+          background: $background;
+          z-index: 1;
+          border-radius: 3px;
+          font-size: 80%;
+          @include lt-sm {
+            width: 60%;
+            left: 40%;
+            box-shadow: 0 3px 10px 2px $gray-secondary;
+          }
+          li.select-option {
+            padding: 5px 10px;
+            justify-content: space-between;
+            &:hover {
+              background-color: $orange-hover;
+            }
+            span {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+      ul.select-div.active {
+        .select-group {
+          display: block;
+        }
+        .default-option {
+          &::before {
+            top: 25px;
+            transform: rotate(-225deg);
+          }
+          p {
+            color: $black;
+          }
+        }
+        border-color: transparent;
+        box-shadow: 0 0 0 1px $orange-focus, 0 0 0 3px $outline-focus;
+      }
+    }
+  }
+  .reviews-list {
+    align-items: stretch;
+    border-top: 1px solid $gray-secondary;
+    margin: 10px 4%;
+    padding: 10px 0;
+    padding-bottom: 50px;
+    .reviews-info {
+      min-width: 25%;
+      border-right: 1px solid $gray-secondary;
+      justify-content: flex-start;
+      align-items: flex-start;
+      .autor {
+        width: 100%;
+        padding: 13px 0 13px 20px;
+        background-color: $file-background;
+        display: inline-flex;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      font-size: 80%;
+        img {
+          width: 25px;
+          height: 15px;
+          margin: 3px 0 0 5px;
+        }
+      }
+      .room {
+        margin: 15px 0 0 20px;
+        font-size: 0.7rem;
+      }
+      .sub-head {
+        @include sub-text();
+        margin: 8px 0 0 20px;
+      }
+    }
+    .reviews-content{
+      padding: 0;
+      .total{
+        width: 100%;
+        padding: 13px 0 5px 20px;
+        background-color: $file-background;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+      .inner{
+        padding: 13px 0 5px 20px;
+        font-size: 90%;
+        .text{
+        text-align: justify;
+          margin-top: 10px;
+          font-size: 85%;
+          color: $gray;
+        }
+        .text.expanded{
+          color: $black;
+        }
+      }
+      .spoiler{
+        padding: 10px 20px;
+        top: 75%;
+        left: -1px;
+        width: 100%;
+        background-color: $background;
+          box-shadow: 20px 0 15px 15px $background;
+        button{
+          background-color: $background;
+          font-size: 90%;
+          p{
+          color: $blue;
+            margin: 0 10px;
+          }
+          svg{
+            fill: $blue;
+          }
+        }
+      }
+      .spoiler.expanded{
+        top: 100%;
+        box-shadow: 0 0 0 0 transparent;
+        border-left: 1px solid $gray-secondary;
+        svg{
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+}
